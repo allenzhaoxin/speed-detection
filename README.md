@@ -82,7 +82,7 @@ Ao executar este comando, verifique se a pasta ficou assim:
 
 `$ ls myEnv `
 
-< img here >
+![ls MyEnv result](https://user-images.githubusercontent.com/11557379/65373036-2eaa8e00-dc4e-11e9-9d37-ef9df69acb56.png)
 
 ---
 
@@ -91,6 +91,8 @@ Ao executar este comando, verifique se a pasta ficou assim:
 Para ativar, execute:
 
 `$ source myEnv/bin/activate `
+
+![VM activate](https://user-images.githubusercontent.com/11557379/65373048-5a2d7880-dc4e-11e9-9c0f-ebcc71e3404d.png)
 
 Para desativar, execute:
 
