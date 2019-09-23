@@ -1,10 +1,10 @@
 import dlib
 import cv2
 
-trackers = []
-
 
 def track_cars(frame_object):
+    trackers = []
+
     for (_x, _y, _w, _h) in frame_object.cars:
         x = int(_x)
         y = int(_y)
