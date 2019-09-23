@@ -1,11 +1,9 @@
-import cv2
+from src.view.VideoInput import VideoInput
 
-from VideoInput import VideoInput
-
-video1 = VideoInput('video_samples/sample_1.mp4')
-video2 = VideoInput('video_samples/sample_2.mp4')
-video3 = VideoInput('video_samples/sample_3.mp4')
-video4 = VideoInput('video_samples/sample_4.mp4')
+video1 = VideoInput('resource/video_samples/sample_1.mp4')
+video2 = VideoInput('resource/video_samples/sample_2.mp4')
+video3 = VideoInput('resource/video_samples/sample_3.mp4')
+video4 = VideoInput('resource/video_samples/sample_4.mp4')
 
 # Play video 1
 
