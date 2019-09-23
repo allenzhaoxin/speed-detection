@@ -21,7 +21,6 @@ def track_cars(frame_object):
         print("New tracked car")
 
     for t in trackers:
-        t.update(frame_object.image)
         pos = t.get_position()
         startX = int(pos.left())
         startY = int(pos.top())
