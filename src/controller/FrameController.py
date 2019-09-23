@@ -1,6 +1,7 @@
 import cv2
 
-cascade = cv2.CascadeClassifier('/home/gabriel-mesquita/Área de Trabalho/speed-detection/speed-detection/src/controller/car.xml')
+cascade = cv2.CascadeClassifier('/home/gabriel-mesquita/Área de Trabalho/speed-detection/speed-detection/resource'
+                                '/cascades/car.xml')
 
 
 class FrameController:
