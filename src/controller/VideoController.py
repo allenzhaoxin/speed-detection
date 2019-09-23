@@ -1,6 +1,9 @@
 from src.view.VideoInput import VideoInput
+from src.controller.TrackController import track_cars
 from src.controller.FrameController import FrameController
 from src.model.Frame import Frame
+
+import cv2
 
 
 class VideoController:
@@ -27,6 +30,13 @@ class VideoController:
                 if not there_are_more_frames:
                     break
 
-                cars = frame_controller.detect_cars(frame)
-                frame_object = Frame(frame, cars)
+                frame_object = Frame(frame)
+
+                frame_object.cars = frame_controller.detect_cars(frame_object)
+
+                track_cars(frame_object)
+
                 self.frames.append(frame_object)
+
+                cv2.imshow('a', frame_object.image)
+                key = cv2.waitKey(1) & 0xFF
