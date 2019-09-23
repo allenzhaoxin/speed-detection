@@ -2,7 +2,6 @@ import cv2
 
 
 class VideoInput:
-
     _path = None
     width = None
     height = None
@@ -22,6 +21,15 @@ class VideoInput:
             self.height = self.video.get(4)
         else:
             print("Error opening video stream or file")
+
+    def is_restarted_video(self):
+        return self.video.set(cv2.CAP_PROP_POS_AVI_RATIO, 0)
+
+    def show_fps(self):
+        return self.video.get(cv2.CAP_PROP_FPS)
+
+    def show_frames_count(self):
+        return self.video.get(cv2.CAP_PROP_POS_FRAMES)
 
     def show_video(self):
         if self.video.isOpened():
