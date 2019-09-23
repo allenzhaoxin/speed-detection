@@ -1,24 +1,29 @@
-import cv2
-
-from src.controller.CarsDetection import CarsDetection
 from src.view.VideoInput import VideoInput
+from src.controller.FrameController import FrameController
 
 
 class VideoController:
-    videoInput = None
+    video_input = None
+    cars_detection = None
+
     frames = []
 
     def __init__(self, path):
-        self.videoInput = VideoInput(path)
+        self.video_input = VideoInput(path)
+        self.discover_video_frames()
 
-        if self.videoInput.is_restarted_video():
-            count = 0
+        for frame in self.frames:
+            print(frame.cars)
+
+    def discover_video_frames(self):
+        if self.video_input.is_restarted_video():
             there_are_more_frames = True
+
             while there_are_more_frames:
-                there_are_more_frames, image = self.videoInput.video.read()
+                there_are_more_frames, frame = self.video_input.video.read()
 
-                # Saves the frames with frame-count
-                self.frames.append(image)
+                if not there_are_more_frames:
+                    break
 
-                count += 1
-            print(len(self.frames))
+                frame_controller = FrameController(frame)
+                self.frames.append(frame_controller)
