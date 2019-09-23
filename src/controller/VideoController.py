@@ -1,10 +1,10 @@
 from src.view.VideoInput import VideoInput
 from src.controller.FrameController import FrameController
+from src.model.Frame import Frame
 
 
 class VideoController:
     video_input = None
-    cars_detection = None
 
     frames = []
 
@@ -17,7 +17,9 @@ class VideoController:
 
     def discover_video_frames(self):
         if self.video_input.is_restarted_video():
+
             there_are_more_frames = True
+            frame_controller = FrameController()
 
             while there_are_more_frames:
                 there_are_more_frames, frame = self.video_input.video.read()
@@ -25,5 +27,6 @@ class VideoController:
                 if not there_are_more_frames:
                     break
 
-                frame_controller = FrameController(frame)
-                self.frames.append(frame_controller)
+                cars = frame_controller.detect_cars(frame)
+                frame_object = Frame(frame, cars)
+                self.frames.append(frame_object)
