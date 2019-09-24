@@ -1,3 +1,3 @@
-from src.controller.VideoController import VideoController
+from src.view.VideoViewer import VideoViewer
 
-controller = VideoController('resource/video_samples/sample_1.mp4')
+video = VideoViewer('resource/video_samples/sample_1.mp4')

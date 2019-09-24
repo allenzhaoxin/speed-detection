@@ -25,11 +25,15 @@ class VideoInput:
     def is_restarted_video(self):
         return self.video.set(cv2.CAP_PROP_POS_AVI_RATIO, 0)
 
-    def show_fps(self):
+    def get_fps(self):
         return self.video.get(cv2.CAP_PROP_FPS)
 
-    def show_frames_count(self):
-        return self.video.get(cv2.CAP_PROP_POS_FRAMES)
+    def get_frames_count(self):
+        self.video.set(cv2.CAP_PROP_POS_AVI_RATIO, 1)
+        total_frames = self.video.get(cv2.CAP_PROP_POS_FRAMES)
+        self.video.set(cv2.CAP_PROP_POS_AVI_RATIO, 0)
+
+        return total_frames
 
     def show_video(self):
         if self.video.isOpened():
