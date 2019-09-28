@@ -1,7 +1,7 @@
 import cv2
 
 
-def _pre_process_frame(frame):
+def pre_process_frame(frame):
     return cv2.cvtColor(frame.copy(), cv2.COLOR_BGR2GRAY)
 
 

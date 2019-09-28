@@ -1,42 +1,101 @@
 import dlib
 import cv2
 
-from src.model.Frame import _pre_process_frame
+from src.model.Frame import pre_process_frame as pre_process
 
 
-def track_cars(frame_object, cars):
-    trackers = []
-    labels = []
-    counter = 0
+class TrackController:
+    frame_object = None
+    cars = None
 
-    for (_x, _y, _w, _h) in cars:
-        x = int(_x)
-        y = int(_y)
-        w = int(_w)
-        h = int(_h)
+    carTracker = {}
 
-        tracker = dlib.correlation_tracker()
+    last_id = 0
 
-        rect = dlib.rectangle(x, y, x + w, y + h)
-        tracker.start_track(_pre_process_frame(frame_object.image), rect)
+    def remove_tracks(self):
+        cars_to_delete = []
 
-        trackers.append(tracker)
-        labels.append(counter)
+        for id in self.carTracker.keys():
+            track_quality = self.carTracker[id].update(self.frame_object.image)
 
-        counter = counter + 1
+            if track_quality < 5:
+                cars_to_delete.append(id)
 
-    return trackers, labels
+        for id in cars_to_delete:
+            print('Removido carro | ID: ' + str(id))
+            self.carTracker.pop(id, None)
 
+    def track_cars(self, frame_object, cars):
 
-def print_tracks(frame_object, trackers, labels):
-    for t in trackers:
-        car_id = labels.pop(0)
+        self.remove_tracks()
 
-        pos = t.get_position()
-        startX = int(pos.left())
-        startY = int(pos.top())
-        endX = int(pos.right())
-        endY = int(pos.bottom())
-        cv2.rectangle(frame_object.image, (startX, startY), (endX, endY), (0, 255, 0), 2)
-        cv2.putText(frame_object.image, 'id: ' + str(car_id), (startX, startY - 15), cv2.FONT_HERSHEY_SIMPLEX, 0.45,
-                    (0, 255, 0), 2)
+        self.frame_object = frame_object
+
+        for (car_sx, car_sy, car_ex, car_ey) in cars:
+            car_start_x = int(car_sx)
+            car_start_y = int(car_sy)
+            car_end_x = int(car_ex)
+            car_end_y = int(car_ey)
+
+            max_x = car_start_x + 0.5 * car_end_x
+            max_y = car_start_y + 0.5 * car_end_y
+
+            tracked_id = None
+
+            for carID in self.carTracker.keys():
+                tracked_position = self.carTracker[carID].get_position()
+
+                tracked_start_x = int(tracked_position.left())
+                tracked_start_y = int(tracked_position.top())
+                tracked_end_x = int(tracked_position.width())
+                tracked_end_y = int(tracked_position.height())
+
+                max_tracked_x = tracked_start_x + 0.5 * tracked_end_x
+                max_tracked_y = tracked_start_y + 0.5 * tracked_end_y
+
+                if (tracked_start_x <= max_x <= (tracked_start_x + tracked_end_x)) and (
+                not tracked_start_y <= max_y > (tracked_start_y + tracked_end_y)) and (
+                not car_start_x <= max_tracked_x > (car_start_x + car_end_x)) and (
+                not car_start_y <= max_tracked_y > (car_start_y + car_end_y)):
+                    tracked_id = carID
+
+            if tracked_id is None:
+                print('Adicionado novo carro | ID: ' + str(self.last_id))
+
+                tracker = dlib.correlation_tracker()
+
+                tracker.start_track(
+                    pre_process(frame_object.image),
+                    dlib.rectangle(
+                        car_start_x,
+                        car_start_y,
+                        car_start_x + car_end_x,
+                        car_start_y + car_end_y
+                    )
+                )
+
+                self.carTracker[self.last_id] = tracker
+
+                self.last_id = self.last_id + 1
+
+    def print_tracks(self):
+        counter = 0
+        for id in self.carTracker.keys():
+            tracker = self.carTracker[id]
+            counter = counter + 1
+
+            tracked_position = tracker.get_position()
+            startX = int(tracked_position.left())
+            startY = int(tracked_position.top())
+            endX = int(tracked_position.right())
+            endY = int(tracked_position.bottom())
+            cv2.rectangle(self.frame_object.image, (startX, startY), (endX, endY), (0, 0, 255), 2)
+            cv2.putText(
+                self.frame_object.image,
+                'ID: ' + str(id),
+                (startX, startY - 15),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                0.45,
+                (0, 250, 0),
+                2
+            )

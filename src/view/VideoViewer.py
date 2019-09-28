@@ -27,7 +27,7 @@ class VideoViewer:
 
             frame_object = self.video_controller.pre_process()
 
-            cv2.imshow('PRE_COMPILE_MODE ', frame_object.image)
+            cv2.imshow('RUN_AND_PLAY_MODE ', frame_object.image)
             key = cv2.waitKey(20) & 0xFF
 
     def _pre_compile(self):

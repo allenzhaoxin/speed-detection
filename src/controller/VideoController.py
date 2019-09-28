@@ -1,6 +1,6 @@
 from src.view.VideoInput import VideoInput
 
-from src.controller.TrackController import track_cars, print_tracks
+from src.controller.TrackController import TrackController
 from src.controller.FrameController import FrameController
 
 from src.model.Frame import Frame
@@ -9,6 +9,7 @@ from src.model.Frame import Frame
 class VideoController:
     video_input = None
     frame_controller = None
+    track_controller = None
 
     frames = []
     total_frames = 1
@@ -18,35 +19,29 @@ class VideoController:
     def __init__(self, path):
         self.frame_controller = FrameController()
         self.video_input = VideoInput(path)
+        self.track_controller = TrackController()
         self.video_input.restart_video()
         self.total_frames = self.video_input.get_frames_count()
 
-    def is_process_ready(self):
+    def start_progression_counter(self):
         current_frames = len(self.frames)
-
-        is_ready = False
-
-        if current_frames >= self.total_frames:
-            is_ready = True
 
         process_percentage = ((current_frames / self.total_frames) * 100)
 
         if self.is_to_print_pre_process_progress:
-            is_process_ready, process_percentage = self.is_process_ready()
-            print('Processing [' + str(int(process_percentage)) + '%] | Finished: ' + str(is_process_ready))
+            print('Processing [' + str(int(process_percentage)) + '%]')
 
-        return is_ready, process_percentage
+        return process_percentage
 
     def _process_frame(self, frame):
         frame_object = Frame(frame)
 
         cars = self.frame_controller.detect_cars(frame_object)
 
-        trackers, labels = track_cars(frame_object, cars)
+        self.track_controller.track_cars(frame_object, cars)
+        self.track_controller.print_tracks()
 
-        print_tracks(frame_object, trackers, labels)
-
-        self.is_process_ready()
+        self.start_progression_counter()
 
         return frame_object
 
