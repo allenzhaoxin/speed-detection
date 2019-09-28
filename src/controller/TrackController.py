@@ -1,6 +1,8 @@
 import dlib
 import cv2
 
+from src.model.Frame import _pre_process_frame
+
 
 def track_cars(frame_object, cars):
     trackers = []
@@ -16,7 +18,7 @@ def track_cars(frame_object, cars):
         tracker = dlib.correlation_tracker()
 
         rect = dlib.rectangle(x, y, x + w, y + h)
-        tracker.start_track(frame_object.image_processed, rect)
+        tracker.start_track(_pre_process_frame(frame_object.image), rect)
 
         trackers.append(tracker)
         labels.append(counter)

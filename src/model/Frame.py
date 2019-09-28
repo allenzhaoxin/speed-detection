@@ -7,8 +7,6 @@ def _pre_process_frame(frame):
 
 class Frame:
     image = None
-    image_processed = None
 
     def __init__(self, image):
         self.image = image
-        self.image_processed = _pre_process_frame(self.image)
