@@ -22,8 +22,8 @@ class VideoInput:
         else:
             print("Error opening video stream or file")
 
-    def is_restarted_video(self):
-        return self.video.set(cv2.CAP_PROP_POS_AVI_RATIO, 0)
+    def restart_video(self):
+        self.video.set(cv2.CAP_PROP_POS_AVI_RATIO, 0)
 
     def get_fps(self):
         return self.video.get(cv2.CAP_PROP_FPS)

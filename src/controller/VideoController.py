@@ -8,14 +8,18 @@ from src.model.Frame import Frame
 
 class VideoController:
     video_input = None
+    frame_controller = None
 
     frames = []
     total_frames = 1
 
+    is_to_print_pre_process_progress = True
+
     def __init__(self, path):
+        self.frame_controller = FrameController()
         self.video_input = VideoInput(path)
+        self.video_input.restart_video()
         self.total_frames = self.video_input.get_frames_count()
-        self.process()
 
     def is_process_ready(self):
         current_frames = len(self.frames)
@@ -27,31 +31,39 @@ class VideoController:
 
         process_percentage = ((current_frames / self.total_frames) * 100)
 
+        if self.is_to_print_pre_process_progress:
+            is_process_ready, process_percentage = self.is_process_ready()
+            print('Processing [' + str(int(process_percentage)) + '%] | Finished: ' + str(is_process_ready))
+
         return is_ready, process_percentage
 
-    def process(self):
-        if self.video_input.is_restarted_video():
+    def _process_frame(self, frame):
+        frame_object = Frame(frame)
 
-            there_are_more_frames = True
-            frame_controller = FrameController()
+        cars = self.frame_controller.detect_cars(frame_object)
 
-            while there_are_more_frames:
-                there_are_more_frames, frame = self.video_input.video.read()
+        trackers, labels = track_cars(frame_object, cars)
 
-                if not there_are_more_frames:
-                    break
+        print_tracks(frame_object, trackers, labels)
 
-                frame_object = Frame(frame)
+        self.is_process_ready()
 
-                cars = frame_controller.detect_cars(frame_object)
+        return frame_object
 
-                trackers, labels = track_cars(frame_object, cars)
+    def _next_frame(self):
+        there_are_more_frames = True
 
-                print_tracks(frame_object, trackers, labels)
+        while there_are_more_frames:
+            there_are_more_frames, frame = self.video_input.video.read()
 
-                self.frames.append(frame_object)
+            return there_are_more_frames, frame
 
-                self.is_process_ready()
+    def pre_process(self):
+        there_are_more_frames, frame = self._next_frame()
 
-                is_process_ready, process_percentage = self.is_process_ready()
-                print('Processing [' + str(int(process_percentage)) + '%] | Finished: ' + str(is_process_ready))
+        if there_are_more_frames:
+
+            frame_object = self._process_frame(frame)
+            self.frames.append(frame_object)
+
+            return frame_object
