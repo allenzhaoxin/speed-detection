@@ -5,6 +5,7 @@ from src.model.Frame import pre_process_frame as pre_process
 
 
 class TrackController:
+
     frame_object = None
     cars = None
 
@@ -24,6 +25,26 @@ class TrackController:
         for id in cars_to_delete:
             print('Removido carro | ID: ' + str(id))
             self.carTracker.pop(id, None)
+
+    def add_new_track(self, car_start_x, car_start_y, car_end_x, car_end_y):
+
+        print('Adicionado novo carro | ID: ' + str(self.last_id))
+
+        tracker = dlib.correlation_tracker()
+
+        tracker.start_track(
+            pre_process(self.frame_object.image),
+            dlib.rectangle(
+                car_start_x,
+                car_start_y,
+                car_start_x + car_end_x,
+                car_start_y + car_end_y
+            )
+        )
+
+        self.carTracker[self.last_id] = tracker
+
+        self.last_id = self.last_id + 1
 
     def track_cars(self, frame_object, cars):
 
@@ -60,23 +81,8 @@ class TrackController:
                     tracked_id = carID
 
             if tracked_id is None:
-                print('Adicionado novo carro | ID: ' + str(self.last_id))
 
-                tracker = dlib.correlation_tracker()
-
-                tracker.start_track(
-                    pre_process(frame_object.image),
-                    dlib.rectangle(
-                        car_start_x,
-                        car_start_y,
-                        car_start_x + car_end_x,
-                        car_start_y + car_end_y
-                    )
-                )
-
-                self.carTracker[self.last_id] = tracker
-
-                self.last_id = self.last_id + 1
+                self.add_new_track(car_start_x, car_start_y, car_end_x, car_end_y)
 
     def print_tracks(self):
         counter = 0
