@@ -6,6 +6,7 @@ path = '/home/gabriel-mesquita/Área de Trabalho/speed-detection/speed-detection
 
 
 class CarCascadeController:
+
     classifier = None
 
     def __init__(self):

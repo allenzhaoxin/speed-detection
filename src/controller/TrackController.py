@@ -5,13 +5,18 @@ from src.controller.PreProcessController import pre_process_frame
 
 
 class TrackController:
+    speed_controller = None
 
     frame_object = None
     cars = None
 
     carTracker = {}
+    carSpeed = {}
 
     last_id = 0
+
+    def __init__(self, speed_controller):
+        self.speed_controller = speed_controller
 
     def remove_tracks(self):
         cars_to_delete = []
@@ -23,12 +28,11 @@ class TrackController:
                 cars_to_delete.append(id)
 
         for id in cars_to_delete:
-            print('Removido carro | ID: ' + str(id))
             self.carTracker.pop(id, None)
 
-    def add_new_track(self, car_start_x, car_start_y, car_end_x, car_end_y):
+            print('Removido carro | ID: ' + str(id))
 
-        print('Adicionado novo carro | ID: ' + str(self.last_id))
+    def add_new_track(self, car_start_x, car_start_y, car_end_x, car_end_y):
 
         tracker = dlib.correlation_tracker()
 
@@ -43,8 +47,10 @@ class TrackController:
         )
 
         self.carTracker[self.last_id] = tracker
-
+        self.carSpeed[self.last_id] = 0
         self.last_id = self.last_id + 1
+
+        print('Adicionado novo carro | ID: ' + str(self.last_id))
 
     def track_cars(self, frame_object, cars):
 
@@ -63,8 +69,8 @@ class TrackController:
 
             tracked_id = None
 
-            for carID in self.carTracker.keys():
-                tracked_position = self.carTracker[carID].get_position()
+            for car_id in self.carTracker.keys():
+                tracked_position = self.carTracker[car_id].get_position()
 
                 tracked_start_x = int(tracked_position.left())
                 tracked_start_y = int(tracked_position.top())
@@ -75,13 +81,14 @@ class TrackController:
                 max_tracked_y = tracked_start_y + 0.5 * tracked_end_y
 
                 if (tracked_start_x <= max_x <= (tracked_start_x + tracked_end_x)) and (
-                not tracked_start_y <= max_y > (tracked_start_y + tracked_end_y)) and (
-                not car_start_x <= max_tracked_x > (car_start_x + car_end_x)) and (
-                not car_start_y <= max_tracked_y > (car_start_y + car_end_y)):
-                    tracked_id = carID
+                        not tracked_start_y <= max_y > (tracked_start_y + tracked_end_y)) and (
+                        not car_start_x <= max_tracked_x > (car_start_x + car_end_x)) and (
+                        not car_start_y <= max_tracked_y > (car_start_y + car_end_y)):
+                    tracked_id = car_id
+
+                self.carSpeed[car_id] = self.speed_controller.speed_calculation([car_start_x, car_start_y, car_end_x, car_end_y], [tracked_start_x, tracked_start_y, tracked_end_x,tracked_end_y])
 
             if tracked_id is None:
-
                 self.add_new_track(car_start_x, car_start_y, car_end_x, car_end_y)
 
     def print_tracks(self):
@@ -91,17 +98,26 @@ class TrackController:
             counter = counter + 1
 
             tracked_position = tracker.get_position()
-            startX = int(tracked_position.left())
-            startY = int(tracked_position.top())
-            endX = int(tracked_position.right())
-            endY = int(tracked_position.bottom())
-            cv2.rectangle(self.frame_object.image, (startX, startY), (endX, endY), (0, 0, 255), 2)
+            start_x = int(tracked_position.left())
+            start_y = int(tracked_position.top())
+            end_x = int(tracked_position.right())
+            end_y = int(tracked_position.bottom())
+            cv2.rectangle(self.frame_object.image, (start_x, start_y), (end_x, end_y), (0, 0, 255), 2)
             cv2.putText(
                 self.frame_object.image,
                 'ID: ' + str(id),
-                (startX, startY - 15),
+                (start_x, start_y - 30),
                 cv2.FONT_HERSHEY_SIMPLEX,
                 0.45,
                 (0, 250, 0),
+                2
+            )
+            cv2.putText(
+                self.frame_object.image,
+                'SPEED: ' + str(int(self.carSpeed[id])) + ' KM/H',
+                (start_x, start_y - 15),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                0.45,
+                (200, 250, 250),
                 2
             )

@@ -1,0 +1,23 @@
+import math
+
+
+class SpeedController:
+
+    fps = 0
+    ppm = 9
+
+    def speed_calculation(self, old_location, new_location):
+        new_start_x = new_location[0]
+        new_start_y = new_location[1]
+        new_end_x = new_location[2]
+        new_end_y = new_location[3]
+        old_start_x = old_location[0]
+        old_start_y = old_location[1]
+        old_end_x = old_location[2]
+        old_end_y = old_location[3]
+
+        d_pixels = math.sqrt(math.pow(new_start_x - old_start_x, 2) + math.pow(new_start_y - old_start_y, 2))
+        d_meters = d_pixels / self.ppm
+        speed = d_meters * 3.6 * self.fps
+
+        return speed
