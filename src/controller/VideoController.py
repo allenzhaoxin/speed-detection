@@ -1,14 +1,14 @@
 from src.view.VideoInput import VideoInput
 
 from src.controller.TrackController import TrackController
-from src.controller.FrameController import FrameController
+from src.controller.CarCascadeController import CarCascadeController
 
 from src.model.Frame import Frame
 
 
 class VideoController:
     video_input = None
-    frame_controller = None
+    car_cascade_controller = None
     track_controller = None
 
     frames = []
@@ -17,7 +17,7 @@ class VideoController:
     is_to_print_pre_process_progress = True
 
     def __init__(self, path):
-        self.frame_controller = FrameController()
+        self.car_cascade_controller = CarCascadeController()
         self.video_input = VideoInput(path)
         self.track_controller = TrackController()
         self.video_input.restart_video()
@@ -36,7 +36,7 @@ class VideoController:
     def _process_frame(self, frame):
         frame_object = Frame(frame)
 
-        cars = self.frame_controller.detect_cars(frame_object)
+        cars = self.car_cascade_controller.detect_cars(frame_object)
 
         self.track_controller.track_cars(frame_object, cars)
         self.track_controller.print_tracks()

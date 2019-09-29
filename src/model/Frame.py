@@ -1,10 +1,3 @@
-import cv2
-
-
-def pre_process_frame(frame):
-    return cv2.cvtColor(frame.copy(), cv2.COLOR_BGR2GRAY)
-
-
 class Frame:
     image = None
 

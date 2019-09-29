@@ -1,7 +1,7 @@
 import dlib
 import cv2
 
-from src.model.Frame import pre_process_frame as pre_process
+from src.controller.PreProcessController import pre_process_frame
 
 
 class TrackController:
@@ -33,7 +33,7 @@ class TrackController:
         tracker = dlib.correlation_tracker()
 
         tracker.start_track(
-            pre_process(self.frame_object.image),
+            pre_process_frame(self.frame_object.image),
             dlib.rectangle(
                 car_start_x,
                 car_start_y,
