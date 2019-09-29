@@ -1,7 +1,6 @@
 import time
 
-from src.view.VideoInput import VideoInput
-
+from src.controller.VideoInput import VideoInput
 from src.controller.TrackController import TrackController
 from src.controller.CarCascadeController import CarCascadeController
 from src.controller.SpeedController import SpeedController
@@ -10,7 +9,6 @@ from src.model.Frame import Frame
 
 
 class VideoController:
-
     video_input = None
 
     car_cascade_controller = None
@@ -29,16 +27,6 @@ class VideoController:
         self.track_controller = TrackController(self.speed_controller)
         self.video_input.restart_video()
         self.total_frames = self.video_input.get_frames_count()
-
-    def start_progression_counter(self):
-        current_frames = len(self.frames)
-
-        process_percentage = ((current_frames / self.total_frames) * 100)
-
-        if self.is_to_print_pre_process_progress:
-            print('Processing [' + str(int(process_percentage)) + '%]')
-
-        return process_percentage
 
     def _process_frame(self, frame):
         start_time = time.time()
@@ -71,8 +59,17 @@ class VideoController:
         there_are_more_frames, frame = self._next_frame()
 
         if there_are_more_frames:
-
             frame_object = self._process_frame(frame)
             self.frames.append(frame_object)
 
             return frame_object
+
+    def start_progression_counter(self):
+        current_frames = len(self.frames)
+
+        process_percentage = ((current_frames / self.total_frames) * 100)
+
+        if self.is_to_print_pre_process_progress:
+            print('Processing [' + str(int(process_percentage)) + '%]')
+
+        return process_percentage

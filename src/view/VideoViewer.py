@@ -12,7 +12,7 @@ class VideoViewer:
     def __init__(self, path):
         self.video_controller = VideoController(path)
 
-    def run(self, mode):
+    def run(self, mode=1):
         if mode == self.MODE_RUN_AND_PLAY:
             self.video_controller.is_to_print_pre_process_progress = False
             self._run_and_play()
