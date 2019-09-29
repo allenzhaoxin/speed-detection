@@ -19,7 +19,6 @@ class VideoController:
 
     frames = []
     total_frames = 1
-    fps = 0
 
     is_to_print_pre_process_progress = True
 
@@ -56,7 +55,7 @@ class VideoController:
         end_time = time.time()
 
         if not (end_time == start_time):
-            self.speed_controller.fps = 1.0 / (end_time - start_time)
+            self.speed_controller.frames_per_second = 1.0 / (end_time - start_time)
 
         return frame_object
 
