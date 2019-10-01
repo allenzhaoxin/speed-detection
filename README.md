@@ -9,6 +9,13 @@ Orientador: Prof. Dr. Marco Túlio Alves Rodrigues
 * Python 3.6.8
 * PIP 9.0.1
 
+### Dependências
+
+* OpenCV 4.1
+* Dlib 19.18
+* Cmake 3.13
+* Numpy 1.17
+
 ### Instalação Python
 
 Instalar o python pela interface de apt-get é muito simples, basta executar os seguintes comandos:
