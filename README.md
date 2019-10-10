@@ -85,9 +85,6 @@ Com o python-venv instalado, crie o seu ambiente virtual proximo ao clone deste 
 
 `$ python3 -m venv myEnv `
 
-Ao executar este comando, verifique se a pasta ficou assim:
-
-`$ ls myEnv `
 
 ![ls MyEnv result](https://user-images.githubusercontent.com/11557379/65373036-2eaa8e00-dc4e-11e9-9d37-ef9df69acb56.png)
 
@@ -109,7 +106,7 @@ Para desativar, execute:
 
 ### Instalação dependências
 
-Com o ambiente virtual ativado, execute no terminal:
+Com o ambiente virtual ativado, entre no projeto speed-detection e execute no terminal:
 
 `$ pip install -r requirements.txt `
 
