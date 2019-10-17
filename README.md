@@ -108,7 +108,13 @@ Para desativar, execute:
 
 Com o ambiente virtual ativado, entre no projeto speed-detection e execute no terminal:
 
-`$ pip install -r requirements.txt `
+`$ pip install -r requirements.txt`
+
+Portanto recomendamos instalar as dependências desta forma:
+
+`$ pip install -r requirements.txt --verbose`
+
+O processo de instalação da dependência DLIB pode ser bastante demorado e caso não use a tag `-- verbose`, a instalação pode passar uma sensação de travamento.
 
 ---
 
