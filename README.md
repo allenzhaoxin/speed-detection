@@ -14,7 +14,7 @@ Orientador: Prof. Dr. Marco Túlio Alves Rodrigues
 * OpenCV 4.1
 * Dlib 19.18
 * Cmake 3.13
-* Numpy 1.17
+* Numpy 1.16
 
 ### Instalação Python
 
