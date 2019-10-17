@@ -112,4 +112,4 @@ Com o ambiente virtual ativado, entre no projeto speed-detection e execute no te
 
 ---
 
-## [Speed detection - Docs](https://github.com/fnoquiq/speed-detection-docs)
+## [Mais documentações](https://github.com/fnoquiq/speed-detection-docs/blob/master/TCC_II___Gabriel_Mesquita___UIT.pdf)
