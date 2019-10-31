@@ -86,7 +86,11 @@ class TrackController:
                         not car_start_y <= max_tracked_y > (car_start_y + car_end_y)):
                     tracked_id = car_id
 
-                self.carSpeed[car_id] = self.speed_controller.speed_calculation([car_start_x, car_start_y, car_end_x, car_end_y], [tracked_start_x, tracked_start_y, tracked_end_x,tracked_end_y])
+                if self.carSpeed[car_id] == 0:
+                    self.carSpeed[car_id] = self.speed_controller.speed_calculation([car_start_x, car_start_y, car_end_x, car_end_y], [tracked_start_x, tracked_start_y, tracked_end_x,tracked_end_y])
+
+                    if self.carSpeed[car_id] > 120:
+                        self.carSpeed[car_id] = 0
 
             if tracked_id is None:
                 self.add_new_track(car_start_x, car_start_y, car_end_x, car_end_y)
