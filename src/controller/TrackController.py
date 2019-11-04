@@ -89,7 +89,7 @@ class TrackController:
                 if self.carSpeed[car_id] == 0:
                     self.carSpeed[car_id] = self.speed_controller.speed_calculation([car_start_x, car_start_y, car_end_x, car_end_y], [tracked_start_x, tracked_start_y, tracked_end_x,tracked_end_y])
 
-                    if self.carSpeed[car_id] > 120:
+                    if self.carSpeed[car_id] > 150:
                         self.carSpeed[car_id] = 0
 
             if tracked_id is None:
