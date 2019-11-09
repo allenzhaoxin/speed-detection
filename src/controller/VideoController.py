@@ -20,10 +20,10 @@ class VideoController:
 
     is_to_print_pre_process_progress = True
 
-    def __init__(self, path):
+    def __init__(self, path, pixels_per_meters):
         self.car_cascade_controller = CarCascadeController()
         self.video_input = VideoInput(path)
-        self.speed_controller = SpeedController()
+        self.speed_controller = SpeedController(pixels_per_meters)
         self.track_controller = TrackController(self.speed_controller)
         self.video_input.restart_video()
         self.total_frames = self.video_input.get_frames_count()

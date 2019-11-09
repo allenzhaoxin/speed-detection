@@ -9,8 +9,8 @@ class VideoViewer:
 
     video_controller = None
 
-    def __init__(self, path):
-        self.video_controller = VideoController(path)
+    def __init__(self, path, pixels_per_meters):
+        self.video_controller = VideoController(path, pixels_per_meters)
 
     def run(self, mode=1):
         if mode == self.MODE_RUN_AND_PLAY:

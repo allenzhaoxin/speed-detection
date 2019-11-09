@@ -3,8 +3,11 @@ import math
 
 class SpeedController:
 
-    frames_per_second = 1
-    pixels_per_meters = 17
+    frames_per_second = None
+    pixels_per_meters = None
+
+    def __init__(self, pixels_per_meters):
+        self.pixels_per_meters = pixels_per_meters
 
     def speed_calculation(self, old_location, new_location):
         new_start_x = new_location[0]
