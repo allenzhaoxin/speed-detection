@@ -118,7 +118,7 @@ class TrackController:
             )
             cv2.putText(
                 self.frame_object.image,
-                'SPEED: ' + str(int(self.carSpeed[id])) + ' KM/H',
+                'VEL.: ' + str(int(self.carSpeed[id])) + ' KM/H',
                 (start_x, start_y - 15),
                 cv2.FONT_HERSHEY_SIMPLEX,
                 0.45,
