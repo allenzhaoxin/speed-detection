@@ -1,4 +1,5 @@
 import cv2
+import os
 
 from src.controller.VideoController import VideoController
 
@@ -46,12 +47,17 @@ class VideoViewer:
             key = cv2.waitKey(20) & 0xFF
 
     def _output(self):
-        out = cv2.VideoWriter('output.mp4', 0x7634706d,
+        filename = os.path.splitext(os.path.basename(self.path))[0]
+        path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'resource', 'video_samples',
+                            'output', str(filename + '.mp4'))
+
+        out = cv2.VideoWriter(path, 0x7634706d,
                               self.video_controller.video_input.get_fps(),
-                              (int(self.video_controller.video_input.width), int(self.video_controller.video_input.height)))
+                              (int(self.video_controller.video_input.width),
+                               int(self.video_controller.video_input.height)))
 
         while len(self.video_controller.frames) != self.video_controller.total_frames:
             frame_object = self.video_controller.pre_process()
-            out.write(cv2.flip(frame_object.image, 0))
+            out.write(frame_object.image)
 
         out.release()
