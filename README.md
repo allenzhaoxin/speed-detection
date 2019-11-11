@@ -6,6 +6,12 @@ Orientador: Prof. Dr. Marco Túlio Alves Rodrigues
 
 ## Resultados de Testes
 
+| **Velocidade Real** 	| **Teste 1** 	| **Teste 2** 	| **Teste 3** 	|
+|:-------------------:	|:-----------:	|:-----------:	|:-----------:	|
+|     **60 KM/H**     	|   56 KM/H   	|    ? KM/H   	|    ? KM/H   	|
+|     **80 KM/H**     	|   73 KM/H   	|    ? KM/H   	|    ? KM/H   	|
+|     **100 KM/H**    	|   106 KM/H  	|    ? KM/H   	|    ? KM/H   	|
+
 Teste controlado a 60 km/h:
 
 ![Teste Controlado 60km-h](https://github.com/fnoquiq/speed-detection/blob/master/resource/video_samples/GIF/teste_controlado_60_lado_1_half_speed.gif)
