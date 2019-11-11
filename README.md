@@ -4,6 +4,20 @@ Gabriel Teixeira Mesquita
 
 Orientador: Prof. Dr. Marco Túlio Alves Rodrigues
 
+## Resultados de Testes
+
+Teste controlado a 60 km/h:
+
+![Teste Controlado 60km-h](https://github.com/fnoquiq/speed-detection/blob/master/resource/video_samples/GIF/teste_controlado_60_lado_1_half_speed.gif)
+
+Teste controlado a 80 km/h:
+
+![Teste Controlado 80km-h](https://github.com/fnoquiq/speed-detection/blob/master/resource/video_samples/GIF/teste_controlado_80_lado_1_half_speed.gif)
+
+Teste controlado a 100 km/h:
+
+![Teste Controlado 100km-h](https://github.com/fnoquiq/speed-detection/blob/master/resource/video_samples/GIF/teste_controlado_100_lado_1_half_speed.gif)
+
 ## Tecnologias utilizadas
 
 * Python 3.6.8
