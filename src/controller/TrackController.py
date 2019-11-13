@@ -30,8 +30,6 @@ class TrackController:
         for id in cars_to_delete:
             self.carTracker.pop(id, None)
 
-            print('Removido carro | ID: ' + str(id))
-
     def add_new_track(self, car_start_x, car_start_y, car_end_x, car_end_y):
 
         tracker = dlib.correlation_tracker()
@@ -49,8 +47,6 @@ class TrackController:
         self.carTracker[self.last_id] = tracker
         self.carSpeed[self.last_id] = 0
         self.last_id = self.last_id + 1
-
-        print('Adicionado novo carro | ID: ' + str(self.last_id))
 
     def track_cars(self, frame_object, cars):
 

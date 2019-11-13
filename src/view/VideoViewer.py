@@ -46,6 +46,8 @@ class VideoViewer:
             cv2.imshow('PRE_COMPILE_MODE ', frame_object.image)
             key = cv2.waitKey(20) & 0xFF
 
+        print('FINISH')
+
     def _output(self):
         filename = os.path.splitext(os.path.basename(self.path))[0]
         path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'resource', 'video_samples',
@@ -61,3 +63,5 @@ class VideoViewer:
             out.write(frame_object.image)
 
         out.release()
+
+        print('FILE SAVED ON ' + path)

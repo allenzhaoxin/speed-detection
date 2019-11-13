@@ -1,5 +1,3 @@
-import time
-
 from src.controller.VideoInput import VideoInput
 from src.controller.TrackController import TrackController
 from src.controller.CarCascadeController import CarCascadeController
@@ -29,7 +27,6 @@ class VideoController:
         self.total_frames = self.video_input.get_frames_count()
 
     def _process_frame(self, frame):
-        start_time = time.time()
 
         frame_object = Frame(frame)
 
@@ -40,10 +37,7 @@ class VideoController:
 
         self.start_progression_counter()
 
-        end_time = time.time()
-
-        if not (end_time == start_time):
-            self.speed_controller.frames_per_second = 1.0 / (end_time - start_time)
+        self.speed_controller.frames_per_second = self.video_input.get_fps()
 
         return frame_object
 
