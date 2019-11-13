@@ -8,21 +8,25 @@ Orientador: Prof. Dr. Marco Túlio Alves Rodrigues
 
 | **Velocidade Real** 	| **Teste 1** 	| **Teste 2** 	| **Teste 3** 	|
 |:-------------------:	|:-----------:	|:-----------:	|:-----------:	|
-|     **60 KM/H**     	|   56 KM/H   	|    ? KM/H   	|    ? KM/H   	|
-|     **80 KM/H**     	|   73 KM/H   	|    ? KM/H   	|    ? KM/H   	|
-|     **100 KM/H**    	|   106 KM/H  	|    ? KM/H   	|    ? KM/H   	|
+|     **60 KM/H**     	|    78 KM/H   	|    84 KM/H   	|   ??? KM/H   	|
+|     **80 KM/H**     	|   105 KM/H   	|   100 KM/H   	|   ??? KM/H   	|
+|     **100 KM/H**    	|   117 KM/H  	|   114 KM/H   	|   ??? KM/H   	|
 
 Teste controlado a 60 km/h:
 
-![Teste Controlado 60km-h](https://github.com/fnoquiq/speed-detection/blob/master/resource/video_samples/GIF/teste_controlado_60_lado_1_half_speed.gif)
+![GIF 60km-h - Day 1](https://github.com/fnoquiq/speed-detection/blob/master/resource/gifs/teste_controlado_60_day1.gif)
+![GIF 60km-h - Day 2](https://github.com/fnoquiq/speed-detection/blob/master/resource/gifs/teste_controlado_60_day2.gif)
 
 Teste controlado a 80 km/h:
 
-![Teste Controlado 80km-h](https://github.com/fnoquiq/speed-detection/blob/master/resource/video_samples/GIF/teste_controlado_80_lado_1_half_speed.gif)
+![GIF 80km-h - Day 1](https://github.com/fnoquiq/speed-detection/blob/master/resource/gifs/teste_controlado_80_day1.gif)
+![GIF 80km-h - Day 2](https://github.com/fnoquiq/speed-detection/blob/master/resource/gifs/teste_controlado_80_day2.gif)
 
 Teste controlado a 100 km/h:
 
-![Teste Controlado 100km-h](https://github.com/fnoquiq/speed-detection/blob/master/resource/video_samples/GIF/teste_controlado_100_lado_1_half_speed.gif)
+![GIF 100km-h - Day 1](https://github.com/fnoquiq/speed-detection/blob/master/resource/gifs/teste_controlado_100_day1.gif)
+![GIF 100km-h - Day 2](https://github.com/fnoquiq/speed-detection/blob/master/resource/gifs/teste_controlado_100_day2.gif)
+
 
 ## Tecnologias utilizadas
 
