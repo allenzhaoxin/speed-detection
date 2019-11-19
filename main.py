@@ -15,8 +15,8 @@ from src.view.VideoViewer import VideoViewer
 
 # VIDEO SAMPLES - DAY 1 - SIDE 1
 
-# video = VideoViewer('resource/video_samples/input/teste_controlado_60_day1.mp4', 19)
-# video.run(VideoViewer.MODE_RUN_AND_PLAY)
+video = VideoViewer('resource/video_samples/input/teste_controlado_60_day1.mp4', 19)
+video.run(VideoViewer.MODE_RUN_AND_PLAY)
 
 # video = VideoViewer('resource/video_samples/input/teste_controlado_80_day1.mp4', 19)
 # video.run(VideoViewer.MODE_OUTPUT)
@@ -91,4 +91,26 @@ from src.view.VideoViewer import VideoViewer
 # video.run(VideoViewer.MODE_OUTPUT)
 
 # video = VideoViewer('resource/video_samples/input/teste_controlado_100_day3_3 (lado2).mp4', 26)
+# video.run(VideoViewer.MODE_OUTPUT)
+
+# VIDEO SAMPLES - DAY 4 - LOW
+
+# video = VideoViewer('resource/video_samples/input/teste_controlado_60_day4_baixo.mp4', 15)
+# video.run(VideoViewer.MODE_OUTPUT)
+
+# video = VideoViewer('resource/video_samples/input/teste_controlado_80_day4_baixo.mp4', 19)
+# video.run(VideoViewer.MODE_OUTPUT)
+
+# video = VideoViewer('resource/video_samples/input/teste_controlado_100_day4_baixo.mp4', 27)
+# video.run(VideoViewer.MODE_OUTPUT)
+
+# VIDEO SAMPLES - DAY 4 - HIGH
+
+# video = VideoViewer('resource/video_samples/input/teste_controlado_60_day4_alto.mp4', 26)
+# video.run(VideoViewer.MODE_OUTPUT)
+
+# video = VideoViewer('resource/video_samples/input/teste_controlado_80_day4_alto.mp4', 25)
+# video.run(VideoViewer.MODE_OUTPUT)
+
+# video = VideoViewer('resource/video_samples/input/teste_controlado_100_day4_alto.mp4', 24)
 # video.run(VideoViewer.MODE_OUTPUT)
