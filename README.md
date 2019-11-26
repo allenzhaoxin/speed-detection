@@ -33,15 +33,15 @@ Teste controlado a 100 km/h:
 
 ## Metodologia
 
-# Deteção
+### Deteção
 
 ![GIF 100km-h - Day 2](https://github.com/fnoquiq/speed-detection/blob/master/resource/gifs/metodologia-1.gif)
 
-# Assimilação
+### Assimilação
 
 ![GIF 100km-h - Day 2](https://github.com/fnoquiq/speed-detection/blob/master/resource/gifs/metodologia-2.gif)
 
-# Cálculo
+### Cálculo
 
 ![GIF 100km-h - Day 2](https://github.com/fnoquiq/speed-detection/blob/master/resource/gifs/metodologia-3.gif)
 
