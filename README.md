@@ -4,13 +4,15 @@ Gabriel Teixeira Mesquita
 
 Orientador: Prof. Dr. Marco Túlio Alves Rodrigues
 
-## Resultados de Testes
+## Resultados dos Testes
 
-| **Velocidade Real** 	| **Teste 1** 	| **Teste 2** 	| **Teste 3** 	|
-|:-------------------:	|:-----------:	|:-----------:	|:-----------:	|
-|     **60 KM/H**     	|    78 KM/H   	|    84 KM/H   	|   ??? KM/H   	|
-|     **80 KM/H**     	|   105 KM/H   	|   100 KM/H   	|   ??? KM/H   	|
-|     **100 KM/H**    	|   117 KM/H  	|   114 KM/H   	|   ??? KM/H   	|
+| **Velocidade Real** 	| **Teste 1** 	| **Teste 2** 	|
+|:-------------------:	|:-----------:	|:-----------:	|
+|     **60 KM/H**     	|    78 KM/H   	|    84 KM/H   	|
+|     **80 KM/H**     	|   105 KM/H   	|   100 KM/H   	|
+|     **100 KM/H**    	|   117 KM/H  	|   114 KM/H   	|
+
+### Exemplos reais e experimentais de testes:
 
 Teste controlado a 60 km/h:
 
@@ -27,6 +29,23 @@ Teste controlado a 100 km/h:
 ![GIF 100km-h - Day 1](https://github.com/fnoquiq/speed-detection/blob/master/resource/gifs/teste_controlado_100_day1.gif)
 ![GIF 100km-h - Day 2](https://github.com/fnoquiq/speed-detection/blob/master/resource/gifs/teste_controlado_100_day2.gif)
 
+---
+
+## Metodologia
+
+# Deteção
+
+![GIF 100km-h - Day 2](https://github.com/fnoquiq/speed-detection/blob/master/resource/gifs/metodologia-1.gif)
+
+# Assimilação
+
+![GIF 100km-h - Day 2](https://github.com/fnoquiq/speed-detection/blob/master/resource/gifs/metodologia-2.gif)
+
+# Cálculo
+
+![GIF 100km-h - Day 2](https://github.com/fnoquiq/speed-detection/blob/master/resource/gifs/metodologia-3.gif)
+
+---
 
 ## Tecnologias utilizadas
 
